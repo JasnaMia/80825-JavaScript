@@ -1,0 +1,24 @@
+
+$ git add .
+
+$ git commit -am "primer codigo"
+Author identity unknown
+
+*** Please tell me who you are.
+
+Run
+
+  git config --global user.email "you@example.com"
+  git config --global user.name "Your Name"
+
+$ git config --global user.email "bonsoirmia@yahoo.com.ar"
+$ git config --global user.name "JasnaMia"
+
+$ git commit -am "primer codigo"
+
+$ 
+git remote add origin https://github.com/JasnaMia/80825-JavaScript.git
+git branch -M main
+git push -u origin main
+
+$ github commit push
