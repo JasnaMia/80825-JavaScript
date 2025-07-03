@@ -10,7 +10,6 @@ console.log(etiquetaVar);
 let boton2 = document.getElementById("boton_clase2").addEventListener("click", function() {
     let resultado = EjemploFuncion(5, 13);
     console.log(`El resultado de la sumatoria es ${resultado}`)
-
     console.log(`funcion flecha Ejemplo ${RetornaResultadoFlecha(6,5)}`)
 
     UsandoCondicionales_Validar();
