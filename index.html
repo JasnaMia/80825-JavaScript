@@ -9,9 +9,26 @@
 <body>
     <h1 id="texto">Titulo cargado</h1>
     <!-- <p id="texto_clase2">"Clase 2"</p> -->
-    <button id="boton_clase2">"Funciones - Clase2"</button>
+    <p>Texto que se puede cambiar desde JS con el <span id="parrafoCambia">boton2</span></p>
     <br>
-    <button id="boton_clase3">"Menu usando funciones - Clase3"</button>
+
+    <section id="radio-boton">
+        <!-- le ponemos el mismo name="GrupoParaSeleccionarUno" para que el user pueda seleccionar un solo OptionButton -->
+        <!-- usamos la propiedad "for" y "id" {con el mismo nombre} para cuando el user de click en el label del OptionButton se active y no solo cuando de click en el radioButton-->
+        <label for="OpcionRadioI">OpcionRadio1</label>
+        <input type="radio" name="GrupoParaSeleccionarUno" id="OpcionRadioI">
+
+        <label for="OpcionRadioII">OpcionRadio2</label>
+        <input type="radio" name="GrupoParaSeleccionarUno" id="OpcionRadioII">
+    </section>
+
+    <section id="seccion-botones"> 
+        <br>
+        <button id="boton_clase2">"Funciones - Clase2"</button>
+        <br>
+        <button id="boton_clase3">"Menu usando funciones - Clase3"</button>
+        <br>
+    </section>
     <script src="main.js"></script>
 </body>
 </html>
