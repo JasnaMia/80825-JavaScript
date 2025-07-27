@@ -1,7 +1,7 @@
 ----------------------------- primera vez
 $ git add .
 
-$ git commit -am "primer codigo"
+$ git commit -am "ejercicio"
 Author identity unknown
 
 $ git config --global user.email "bonsoirmia@yahoo.com.ar"
@@ -22,3 +22,5 @@ git commit -am "clase2_v2"
 //   git pull origin main    --------- no ejecutar esto
 git push origin main
 
+--------------------------------------
+************************************
