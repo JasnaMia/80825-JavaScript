@@ -82,7 +82,7 @@ console.log(retornaFindIndex)
 
 
 //--------------------------------------     S O M E    --------------------------------------
-// esta funcion busca un boolean si coincide con el filtro del array
+// esta funcion devuelve un boolean si coincide con el filtro del array
 // Si no encuentra nada, devuelve -1
 let retornaSome = cursos.some ((elemento) => elemento.precio > 50000)
 
