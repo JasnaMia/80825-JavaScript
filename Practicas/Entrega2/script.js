@@ -15,8 +15,8 @@ const listaDeVinos = [
 
 let Carrito = []
 
-const muestraListaVinos = () => {
-     let todosLosVinos = listaDeVinos.reduce((concatena, elementoArray) => {
+const muestraListaVinos = (arreglo, mensaje) => {
+     let todosLosVinos = arreglo.reduce((concatena, elementoArray) => {
         return (concatena += '#' + elementoArray.id
                 + ' - ' + elementoArray.color
                 + ' - ' + elementoArray.tipo
@@ -25,7 +25,11 @@ const muestraListaVinos = () => {
                 + '] - $' + elementoArray.precio
                 + '\n'
                 )
-    }, "Los vinos que tenemos actualmente son: \n")
+    }, mensaje + " \n")
+    let total = calculaTotalCarrito(mensaje)
+    if (total > 0) {
+        todosLosVinos += '\n \n Su total es: ' + total
+    }
     alert(todosLosVinos)
 }
 
@@ -42,13 +46,32 @@ const seleccionaVinos = () => {
     let agregaVino = listaDeVinos.find((elemento) => elemento.id == cualVino)
     if (agregaVino){
         const listaCompra = {... agregaVino}
-       Carrito.push(listaCompra) 
+        Carrito.push(listaCompra) 
     }
-    
+    else {
+        alert("Codigo no valido")
+    }
     console.log(Carrito)
 }
 
+const calculaTotalCarrito = (msj) => {
+    let valor = 0, total = 0
+    console.log(msj)
+    console.log(Carrito)
+    if (msj = "Su carrito de compras es:") {
+        total = Carrito.reduce((acumulador, elemento) => {
+            return (acumulador += elemento.precio)
+                }, 0)
+        console.log('El total es: ' + total)
+        valor = total.toFixed(2)        
+    } else {
+        valor = 0
+    }
+    return valor
+} 
+
 const muestraMenuVinos = () => {
+    let seguirComprando = true
     let menu = "Bienvenidos a la tienda de Vinos - EC \n" +
                 "1. Lista de Vinos \n" +
                 "2. Seleccionar vinos a comprar \n" +
@@ -60,11 +83,19 @@ const muestraMenuVinos = () => {
     let opcion = validaOpcionSeleccionada("Ingrese la opcion: ")
     switch (opcion) {
         case 1:
-            muestraListaVinos()
+            muestraListaVinos(listaDeVinos, "Los vinos que tenemos actualmente son:")
             break;
         case 2:
-            seleccionaVinos()
+            seguirComprando = true
+            while (seguirComprando) {
+                seleccionaVinos()
+                seguirComprando = confirm("Desea seguir comprando?")
+            }
+            muestraMenuVinos()
             break;  
+        case 3:
+            muestraListaVinos(Carrito, "Su carrito de compras es:")
+            break;   
         case 5:
             break;   
         default:
