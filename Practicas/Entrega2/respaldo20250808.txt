@@ -1,0 +1,105 @@
+
+let Carrito = [] 
+const contenedorVinos = document.getElementById('contenedor-vinos')
+
+const MostrarCarrito = document.querySelector('.miCarrito')
+
+const listaDeVinos = [
+    {id: 101, nombre: 'Emilia', anio: 2009, precio: 4500, img: "./imagenes/Emilia.png"},
+    {id: 102, nombre: 'Portillo', anio: 2000, precio: 5500, img: "./imagenes/portillo.png"},
+    {id: 103, nombre: 'Bianchi', anio: 2020, precio: 3500, img: "./imagenes/bianchi.png"},
+    {id: 104, nombre: 'Elementos', anio: 2020, precio: 4300, img: "./imagenes/Elementos.png"},
+    {id: 201, nombre: 'Benjamin', anio: 2021, precio: 2300, img: "./imagenes/benjamin.png"},
+    {id: 301, nombre: 'Trumpeter', anio: 2021, precio: 8500, img: "https://www.lacoopeencasa.coop/media/lcec/publico/articulos/8/f/a/8fa2946b27e46790630ae806dd2d2e58"}
+]
+
+const mostrarCarrito = () => {
+    const nuevoBoton = document.createElement('button')
+    nuevoBoton.textContent = "Mostrar carrito"
+    MostrarCarrito.appendChild(nuevoBoton)
+    nuevoBoton.addEventListener("click", (e) = {
+        // Carrito.forEach(ele => {
+            console.log("mensaje")
+        // })
+    })
+}
+
+const agregaAlCarrito = () => {
+    let botonCompra = document.querySelectorAll(".botonCompra")
+    let arreglo = Array.from(botonCompra)
+
+    arreglo.forEach((boton) => {
+        boton.addEventListener("click", (e) => {
+			let id = e.target.parentNode.id
+
+			let producto = listaDeVinos.find((el) => el.id == id)
+
+			Carrito.push({ ...producto })
+            // let elemento = document.querySelectorAll(".producto");
+            // console.log('elementosss: ')
+            
+            // console.log(elemento)
+            mostrarCarrito()
+        })
+    })
+}
+
+const cargarProductos = () =>
+{
+    contenedorVinos.innerHTML = ""
+    listaDeVinos.forEach(el => {
+        contenedorVinos.innerHTML += `<section class="vinos" id=${el.id}>
+            <h3>${el.nombre}</h3>
+            <img src=${el.img} alt="vino" widht=10/>
+            <p>$${el.precio}</p>
+            <button class="botonCompra">Comprar</button>
+        </div></section>`  
+    })
+    agregaAlCarrito()
+}
+
+
+document.addEventListener('DOMContentLoaded', () => {
+	cargarProductos()
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilo.css">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Segunda entrega</h1>
+    <h2>Jasna Mihalache</h2>
+    <!-- <main id="contenedor-vinos"></main> -->
+    <div class="miCarrito">
+        <!-- <div class="contenedor-Modal"> -->
+        <!-- <p>Carrito sin productos</p> -->
+        <!-- </div>     -->
+    </div>  
+    <script src="script.js"></script>
+</body>
+</html>

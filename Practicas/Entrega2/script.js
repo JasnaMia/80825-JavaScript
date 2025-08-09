@@ -1,6 +1,7 @@
 
 let Carrito = [] 
-let contenedorDOM = document.querySelector(".contenedor")
+const todosLosProductos = document.querySelector('.todosProductos')
+const carritoDOM = document.querySelector('.miCarrito')
 
 const listaDeVinos = [
     {id: 101, nombre: 'Emilia', anio: 2009, precio: 4500, img: "./imagenes/Emilia.png"},
@@ -11,37 +12,38 @@ const listaDeVinos = [
     {id: 301, nombre: 'Trumpeter', anio: 2021, precio: 8500, img: "https://www.lacoopeencasa.coop/media/lcec/publico/articulos/8/f/a/8fa2946b27e46790630ae806dd2d2e58"}
 ]
 
+const agregaCarritoArreglo = () => {
+    const botones = document.querySelectorAll('.agregar-producto')
+	const botonArreglo = Array.from(botones)
 
-const cargarProductos = () =>
-{
-    contenedorDOM.innerHTML = ""
-    listaDeVinos.forEach(el => {
-         contenedorDOM.innerHTML += `<div class="producto">
-            <h3>${el.nombre}</h3>
-            <img src=${el.img} alt="vino" widht=10 />
-            <p>$${el.precio}</p>
-            <button class="botonCompra">Comprar</button>
-        </div>`  
-    })
-    agregaAlCarrito()
-}
+    botonArreglo.forEach((boton)=> {
+        boton.addEventListener('click', e => {
+            const seleccionado = e.target.parentElement
+            const id = seleccionado.querySelector('h4').textContent
+            const buscaId = listaDeVinos.find((elemento) => elemento.id === id)
 
-const agregaAlCarrito = () => {
-    let botonCompra = document.querySelectorAll(".botonCompra")
-    let arreglo = Array.from(botonCompra)
-
-    arreglo.forEach((boton) => {
-        boton.addEventListener("click", () => {
-            let elemento = document.querySelectorAll(".producto");
-            console.log('elementosss: ')
-            
-            console.log(elemento)
-            
+            console.log('id: ' + id)
+            console.log('busca id: ' + buscaId)
+            // no me esta encontrando el vino q intento comprar
         })
     })
-    console.log(Carrito)
 }
 
+const cargarProductos = () => {
+    listaDeVinos.forEach((e) => {
+        const contenedorProducto = document.createElement('div') 
+        contenedorProducto.classList.add('claseContenedorProducto')
+        contenedorProducto.innerHTML = `
+                                    <h2>${e.nombre}</h2>
+                                    <h4>${e.id}</h4>
+                                    <img src= ${e.img}>
+                                    <p>${e.precio}</p>
+                                    <button class="agregar-producto">Comprar</button>
+                                `
+        todosLosProductos.append(contenedorProducto) 
+        agregaCarritoArreglo()                       
+    }) 
+}
 
 document.addEventListener('DOMContentLoaded', () => {
 	cargarProductos()
