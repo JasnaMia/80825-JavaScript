@@ -2,6 +2,8 @@
 let Carrito = [] 
 const todosLosProductos = document.querySelector('.todosProductos')
 const carritoDOM = document.querySelector('.miCarrito')
+const totalCarritoDOM = document.querySelector('.total_miCarrito')
+// const botonCarritoDOM = document.getElementById('activa-carrito')
 
 const listaDeVinos = [
     {id: 101, nombre: 'Emilia', anio: 2009, precio: 4500, img: "./imagenes/Emilia.png"},
@@ -12,20 +14,63 @@ const listaDeVinos = [
     {id: 301, nombre: 'Trumpeter', anio: 2021, precio: 8500, img: "https://www.lacoopeencasa.coop/media/lcec/publico/articulos/8/f/a/8fa2946b27e46790630ae806dd2d2e58"}
 ]
 
-const agregaCarritoArreglo = () => {
+const totalPrecios = () => {
+        let total = Carrito.reduce ((acumulador, elemento) => {
+            return (acumulador += elemento.precio)
+        }, 0)
+
+        totalCarritoDOM.innerHTML = ""
+        const contenedorTotalPrecio = document.createElement('div') 
+        contenedorTotalPrecio.classList.add('clasecontenedorTotalPrecio')
+        contenedorTotalPrecio.innerHTML = `
+                                    <p>El total es: ${total}</p>
+                                        `
+        totalCarritoDOM.append(contenedorTotalPrecio) 
+}
+
+const agregaCarritoHTML = () => {
+    if (Carrito.length > 0) {    
+        carritoDOM.innerHTML = "";
+        Carrito.forEach((e) => {
+            const contenedorNuevoProducto = document.createElement('div') 
+            contenedorNuevoProducto.classList.add('claseContenedorNuevoProducto')
+            contenedorNuevoProducto.innerHTML = `
+                                        <h2>${e.nombre}</h2>
+                                        <p>${e.precio}</p>
+                                    `
+            carritoDOM.append(contenedorNuevoProducto) 
+        })
+        totalPrecios()
+    } else {
+        console.log("No hay productos en el carrito")
+    }
+}
+
+// botonCarritoDOM.addEventListener(("click"), () => {
+//     if (Carrito.length > 0) {
+//         agregaCarritoHTML()             
+//     } else {
+//         console.log("No hay productos en el carrito")
+//     }
+// })   
+
+const agregaCarritoArreglo = () => {  
     const botones = document.querySelectorAll('.agregar-producto')
 	const botonArreglo = Array.from(botones)
-
+    
     botonArreglo.forEach((boton)=> {
-        boton.addEventListener('click', e => {
-            const seleccionado = e.target.parentElement
-            const id = seleccionado.querySelector('h4').textContent
-            const buscaId = listaDeVinos.find((elemento) => elemento.id === id)
+         boton.addEventListener('click', e => {
+             const seleccionado = e.target.parentElement
+             const id = seleccionado.querySelector('h4').textContent
+             const encontroElemento = listaDeVinos.find((elemento) => elemento.id == id)
 
-            // no me esta encontrando el vino/producto q intento comprar con la funcion FIND
-            console.log('id: ' + id)
-            console.log('busca id: ' + buscaId)
-            
+             if (encontroElemento) {
+                const yaExiste = Carrito.some(item => item.id == id);
+                if (!yaExiste) {
+                    Carrito.push({...encontroElemento})
+                    agregaCarritoHTML()
+                }
+             }
         })
     })
 }
@@ -41,7 +86,7 @@ const cargarProductos = () => {
                                     <p>${e.precio}</p>
                                     <button class="agregar-producto">Comprar</button>
                                 `
-        todosLosProductos.append(contenedorProducto) 
+        todosLosProductos.append(contenedorProducto)         
         agregaCarritoArreglo()                       
     }) 
 }

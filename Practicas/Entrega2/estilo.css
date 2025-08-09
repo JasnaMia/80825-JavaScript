@@ -1,19 +1,37 @@
-.contenedor {
+.todosProductos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 10px;
+  text-align: center;
+  background-color: lightblue;
+}
+
+.claseContenedorProducto {
+  width: 25%; /* Ajusta el ancho para el número de columnas deseado */
+  margin: 1%;
+  border: 2px solid #ad6060;
+  padding: 10px;
+  box-sizing: content-box;
+  background-color:aliceblue;
+}
+
+.miCarrito {
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: center;
-	gap: 1rem;
-    text-align: center;
+	justify-content: space-around;
+	gap: 10px;
+  text-align: center;
 }
 
-.producto {
-    width: 23%; /* Ajusta el ancho para el número de columnas deseado */
-    margin: 1%;
-    border: 1px solid #ccc;
-    padding: 10px;
-    box-sizing: border-box;
+.cuadrado {
+  width: 95%; /* Ajusta el ancho para el número de columnas deseado */
+  margin: 3%;
+  border: 3px solid #b8419e;
+  padding: 5px;
+  background-color: burlywood;
 }
-
+/* 
 .miModal {
   display: none;
   position: fixed;
@@ -32,4 +50,4 @@
   padding: 20px;
   border: 1px solid #888;
   width: 80%;
-}
+} */

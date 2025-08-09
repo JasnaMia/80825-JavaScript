@@ -1,3 +1,6 @@
+https://www.youtube.com/watch?v=3L_Wt6rfBvQ
+
+
 
 let Carrito = [] 
 const contenedorVinos = document.getElementById('contenedor-vinos')
