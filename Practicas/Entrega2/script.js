@@ -22,9 +22,10 @@ const agregaCarritoArreglo = () => {
             const id = seleccionado.querySelector('h4').textContent
             const buscaId = listaDeVinos.find((elemento) => elemento.id === id)
 
+            // no me esta encontrando el vino/producto q intento comprar con la funcion FIND
             console.log('id: ' + id)
             console.log('busca id: ' + buscaId)
-            // no me esta encontrando el vino q intento comprar
+            
         })
     })
 }
